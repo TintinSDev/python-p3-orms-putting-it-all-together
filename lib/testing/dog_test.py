@@ -2,6 +2,13 @@ from dog import Dog, CONN, CURSOR
 
 class TestDog:
     '''Class Dog in dog.py'''
+    def setup_class(cls):
+        Dog.create_table()
+        
+    def teardown_class(cls):
+        Dog.drop_table()
+        Dog.CONN.close()
+
 
     def test_has_name_and_breed_attributes(self):
         '''initializes with name and breed attributes.'''
